@@ -1,38 +1,54 @@
 import 'package:flutter/material.dart';
 
-class CustomInput extends StatelessWidget {
+class CustomInput extends StatefulWidget {
   const CustomInput({
     super.key,
-    required this.userController,
+    required this.emailController,
     required this.title,
+    required this.ocupalengthmax,
+    this.length,
+    required this.icon,
     this.keyboardType = TextInputType.text,
   });
 
-  final TextEditingController userController;
+  final TextEditingController emailController;
   final String title;
   final TextInputType keyboardType;
+  final bool ocupalengthmax;
+  final int? length;
+  final Icon icon;
+
+  @override
+  State<CustomInput> createState() => _CustomInputState();
+}
+
+class _CustomInputState extends State<CustomInput> {
+  bool _obscureText = true; 
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      controller: userController,
-      keyboardType: keyboardType,
-      obscureText: keyboardType == TextInputType.visiblePassword,
-      // style: TextStyle(color: Colors.teal),
+      controller: widget.emailController,
+      keyboardType: widget.keyboardType,
+      obscureText: _obscureText, 
+      style: TextStyle(color: Colors.purple),
       decoration: InputDecoration(
-          hintText: 'Ingrese su $title',
-          // labelStyle: TextStyle(color: Colors.red),
-          label: Text(title),
-          border: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(1000),
-            ),
+        hintText: 'Ingrese su ${widget.title}',
+        label: Text(widget.title),
+        border: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(1000),
           ),
-          prefixIcon: const Icon(Icons.person),
-          suffixIcon: const Icon(Icons.remove_red_eye)
-          // counter: Text('olii'),
-          ),
-      maxLength: 15,
+        ),
+        prefixIcon: widget.icon,
+        suffixIcon: widget.keyboardType == TextInputType.visiblePassword
+            ? IconButton(
+                icon: Icon(
+                  _obscureText ? Icons.visibility_off : Icons.visibility,
+                ),
+                onPressed: () {setState(() { _obscureText = !_obscureText; });},) : null, 
+      ),
+      maxLength: widget.ocupalengthmax ? widget.length : null,
     );
   }
 }

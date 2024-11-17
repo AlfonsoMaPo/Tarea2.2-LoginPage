@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/Widget/costume_input.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -29,15 +30,22 @@ class _LoginScreenState extends State<LoginPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextField(
-              controller: emailController,
-              decoration: InputDecoration(labelText: 'Correo'),
-            ),
-            TextField(
-              controller: passwordController,
-              decoration: InputDecoration(labelText: 'Contraseña'),
-              obscureText: true,
-            ),
+            CustomInput(
+                title: 'Correo',
+                emailController: emailController,
+                ocupalengthmax: true,
+                length: 10,
+                icon:const Icon(Icons.email),
+                ),
+            CustomInput(
+                title: 'Contraseña',
+                emailController: passwordController,
+                keyboardType: TextInputType.visiblePassword,
+                ocupalengthmax: false,
+                icon:const Icon(Icons.lock)
+                ),
+
+            
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: _login,
