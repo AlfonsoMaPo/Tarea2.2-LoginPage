@@ -33,7 +33,7 @@ class _RegisterPageState extends State<RegisterPage> {
     print('El teléfono debe comenzar con 3 o 9');
     return;
     }
-    
+    //esto tuve que buscarlo xd
     if (!RegExp(r'^(?=.*[A-Z])(?=.*[!@#\$&*~]).{8,}$')
         .hasMatch(passwordController.text)) {
     print(
@@ -45,7 +45,6 @@ class _RegisterPageState extends State<RegisterPage> {
       return;
     }
 
-    // Si todas las validaciones pasan
     print(
         'Registro exitoso: ${nameController.text}, ${emailController.text}, ${phoneController.text}');
   }
