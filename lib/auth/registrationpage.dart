@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/Widget/costume_registration.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -53,37 +54,70 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       appBar: AppBar(title: Text('Registro')),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding:const EdgeInsets.all(22.0),
         child: Column(
           children: [
-            TextField(
-              controller: nameController,
-              decoration: InputDecoration(labelText: 'Nombre'),
+             const Text('Bienvenido a DandaDan',style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
+             const Text('Llena los siguientes campos para disfrutar de nuestos servicios',textAlign: TextAlign.center,style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400),
             ),
-            TextField(
-              controller: emailController,
-              decoration: InputDecoration(labelText: 'Correo'),
+            CustomRegistration(
+              controller: nameController, 
+              title: 'Nombre', 
+              ocupalengthmax: true,
+              length: 10, 
+              icon:const Icon(Icons.person),
+              
             ),
-            TextField(
-              controller: phoneController,
-              decoration: InputDecoration(labelText: 'Teléfono'),
-              keyboardType: TextInputType.phone,
+            CustomRegistration(
+              controller: emailController, 
+              title: 'Correo', 
+              ocupalengthmax: false,
+              icon:const Icon(Icons.email),
+              keyboardType: TextInputType.emailAddress,
             ),
-            TextField(
-              controller: passwordController,
-              decoration: InputDecoration(labelText: 'Contraseña'),
-              obscureText: true,
-            ),
-            TextField(
-              controller: confirmPasswordController,
-              decoration: InputDecoration(labelText: 'Confirmar Contraseña'),
-              obscureText: true,
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
+            const SizedBox(height: 21),
+
+            CustomRegistration(
+              controller: phoneController, 
+              title: "Telefóno", 
+              ocupalengthmax: true,
+              length: 8,
+              icon: const Icon(Icons.phone),
+              keyboardType:TextInputType.phone
+              ),
+
+            CustomRegistration(
+              controller: passwordController, 
+              title: "Contraseña", 
+              ocupalengthmax: false,
+              icon: const Icon(Icons.lock),
+              keyboardType:TextInputType.visiblePassword
+              ),
+
+            const SizedBox(height: 21),
+
+             CustomRegistration(
+              controller: passwordController, 
+              title: "Confirmar contraseña", 
+              ocupalengthmax: false,
+              icon: const Icon(Icons.lock),
+              keyboardType:TextInputType.visiblePassword
+              ), 
+
+            SizedBox(height: 40),
+            SizedBox(height:40,width:double.infinity, 
+            child:ElevatedButton(
               onPressed: _register,
-              child: Text('Registrarse'),
-            ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.lightGreen.shade400
+              ),
+              child: const Text('Registrarse',
+              style: TextStyle(
+                color: Colors.deepPurple,
+               fontSize: 18),
+               )
+              ),
+            ), 
           ],
         ),
       ),

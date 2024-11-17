@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class CustomInput extends StatefulWidget {
-  const CustomInput({
+class CustomRegistration extends StatefulWidget {
+  const CustomRegistration({
     super.key,
-    required this.emailController,
+    required this.controller,
     required this.title,
     required this.ocupalengthmax,
     this.length,
@@ -11,7 +11,7 @@ class CustomInput extends StatefulWidget {
     this.keyboardType = TextInputType.text,
   });
 
-  final TextEditingController emailController;
+  final TextEditingController controller;
   final String title;
   final TextInputType keyboardType;
   final bool ocupalengthmax;
@@ -19,18 +19,18 @@ class CustomInput extends StatefulWidget {
   final Icon icon;
 
   @override
-  State<CustomInput> createState() => _CustomInputState();
+  State<CustomRegistration> createState() => _CustomInputState();
 }
 
-class _CustomInputState extends State<CustomInput> {
-  bool _obscureText = false; 
+class _CustomInputState extends State<CustomRegistration> {
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      controller: widget.emailController,
+      controller: widget.controller,
       keyboardType: widget.keyboardType,
-      obscureText: widget.keyboardType == TextInputType.visiblePassword ? _obscureText : false, 
+      obscureText: widget.keyboardType == TextInputType.visiblePassword ? _obscureText : false,
       style: TextStyle(color: Colors.purple),
       decoration: InputDecoration(
         hintText: 'Ingrese su ${widget.title}',
@@ -46,7 +46,13 @@ class _CustomInputState extends State<CustomInput> {
                 icon: Icon(
                   _obscureText ? Icons.visibility_off : Icons.visibility,
                 ),
-                onPressed: () {setState(() { _obscureText = !_obscureText; });},) : null, 
+                onPressed: () {
+                  setState(() {
+                    _obscureText = !_obscureText;
+                  });
+                },
+              )
+            : null,
       ),
       maxLength: widget.ocupalengthmax ? widget.length : null,
     );

@@ -3,10 +3,10 @@ import 'package:myapp/Widget/costume_input.dart';
 
 class LoginPage extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginScreenState extends State<LoginPage> {
+class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -16,7 +16,7 @@ class _LoginScreenState extends State<LoginPage> {
       Navigator.pushReplacementNamed(context, '/home', arguments: emailController.text);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Credenciales incorrectas')),
+        const SnackBar(content: Text('Credenciales incorrectas')),
       );
     }
   }
@@ -24,19 +24,25 @@ class _LoginScreenState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Inicio de Sesión')),
+      appBar: AppBar(title: const Text('Inicio de Sesión')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          
           children: [
+            const Text('Bienvenido de vuelta!',style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
+            const Text('Inicia sesión para poder seguir',style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400),
+            ),
+            const SizedBox(height: 30),
             CustomInput(
                 title: 'Correo',
                 emailController: emailController,
-                ocupalengthmax: true,
-                length: 10,
+                ocupalengthmax: false,
                 icon:const Icon(Icons.email),
+                keyboardType: TextInputType.emailAddress,
                 ),
+                SizedBox(height: 20),
             CustomInput(
                 title: 'Contraseña',
                 emailController: passwordController,
@@ -44,23 +50,36 @@ class _LoginScreenState extends State<LoginPage> {
                 ocupalengthmax: false,
                 icon:const Icon(Icons.lock)
                 ),
+            const Align(alignment: Alignment.centerRight,
+            child:Text('Se me olvidó la contraseña')),
 
-            
-            SizedBox(height: 20),
-            ElevatedButton(
+            const SizedBox(height: 50),
+
+            SizedBox(height:40,width:double.infinity, 
+            child:ElevatedButton(
               onPressed: _login,
-              child: Text('Iniciar Sesión'),
-            ),
-            TextButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.lightGreen.shade300
+              ),
+              child: const Text('Iniciar Sesión',style: TextStyle(fontSize: 18),)
+              ),
+            ), 
+             Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                const Text('No tienes una cuenta?',
+                style: TextStyle(fontSize: 15)),
+              TextButton(
               onPressed: () {
-                // Navegar a la pantalla de registro
                 Navigator.pushNamed(context, '/register');
               },
-              child: Text('Registrarse'),
+              child:const Text('Registrarse',style: TextStyle(fontWeight:FontWeight.bold),)),
+              ],
             ),
+            
           ],
-        ),
       ),
+    ),
     );
   }
 }
