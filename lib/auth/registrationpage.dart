@@ -13,6 +13,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
+//no se puede usar snackbar aca XD
   void _register() {
     if (nameController.text.length < 3 || nameController.text.length > 10) {
       print('Nombre debe tener entre 3 y 10 caracteres');
@@ -97,14 +98,14 @@ class _RegisterPageState extends State<RegisterPage> {
             const SizedBox(height: 21),
 
              CustomRegistration(
-              controller: passwordController, 
+              controller: confirmPasswordController, 
               title: "Confirmar contraseña", 
               ocupalengthmax: false,
               icon: const Icon(Icons.lock),
               keyboardType:TextInputType.visiblePassword
               ), 
 
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             SizedBox(height:40,width:double.infinity, 
             child:ElevatedButton(
               onPressed: _register,

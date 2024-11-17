@@ -11,8 +11,8 @@ class _LoginPageState extends State<LoginPage> {
   final passwordController = TextEditingController();
 
   void _login() {
-    if (emailController.text == 'tu.correo@unah.edu.hn' &&
-        passwordController.text == '12345678') {
+    if (emailController.text == 'alfonso@unah.edu.hn' &&
+        passwordController.text == 'A1Un/ficacion') {
       Navigator.pushReplacementNamed(context, '/home', arguments: emailController.text);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(

@@ -31,7 +31,7 @@ class _CustomInputState extends State<CustomRegistration> {
       controller: widget.controller,
       keyboardType: widget.keyboardType,
       obscureText: widget.keyboardType == TextInputType.visiblePassword ? _obscureText : false,
-      style: TextStyle(color: Colors.purple),
+      style:const TextStyle(color: Colors.purple),
       decoration: InputDecoration(
         hintText: 'Ingrese su ${widget.title}',
         label: Text(widget.title),
